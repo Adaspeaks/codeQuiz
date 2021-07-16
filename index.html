@@ -1,27 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Code Quiz</title>
-    <link rel="stylesheet" href="./assets/css/reset.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
-</head>
-<body id="pageContainer">
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body id="pageContainer">
     <header id="header">
-        <div id="highScore">
-            <button id="viewHighscore">
-                High scores
-            </button>
-        </div>
-        <div id="scoreWrap" class="hidden">
-            <p><span id="currentScore: ">0</span></p>
-        </div>
-        <div id="clock" class="hidden">
-            <p><span id="currentTime: ">90</span></p>
-        </div>
+      <div id="highScore">
+        <button id="viewHighscore">High scores</button>
+      </div>
+      <div id="scoreWrap" class="hidden">
+        <p><span id="currentScore: ">0</span></p>
+      </div>
+      <div id="clock" class="hidden">
+        <p><span id="currentTime: ">90</span></p>
+      </div>
     </header>
-</body>
+
+    <!-- splashscreen for start of game -->
+    <section id="starterSplash">
+      <h1>Javascript Code Quiz</h1>
+      <h2>Rules!</h2>
+      <ul>
+        <li>You have 90 seconds in order to answer 15 questions</li>
+        <li>
+          Each question is worth 1000 points and each wrong answer is worth -100
+          points
+        </li>
+        <li>ALSO for every wrong answer you will also lose 15 seconds!</li>
+        <li>
+          The game ends when you get all 15 questions right, or you run out of
+          time.
+        </li>
+        <li>TRY FOR A <span>HIGH SCORE</span>!</li>
+        <li>The game starts when you press the shiny button below!</li>
+      </ul>
+      <button id="startBtn">SHINY</button>
+    </section>
+    <!-- end of splashscreen -->
+
+    <!-- actual quiz components go here -->
+    <main id="contentWrap">
+        
+    </main>
+    <!-- end of page don't need footer -->
+  </body>
 </html>
 <script src="./assets/js/script.js"></script>
