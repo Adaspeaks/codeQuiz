@@ -11,16 +11,17 @@
   <body id="pageContainer">
     <header id="header">
       <div id="highScore">
-        <button id="viewHighscore">High scores</button>
-      </div>
-      <div id="scoreWrap" class="hidden">
-        <p><span id="currentScore: ">0</span></p>
+        <button id="viewHighscore">View Highscores</button>
       </div>
       <div id="clock" class="hidden">
-        <p><span id="currentTime: ">90</span></p>
+        <p><span id="currentTime">90</span></p>
+      </div>
+      <div id="scoreWrap" class="hidden">
+        <p><span id="currentScore">0</span></p>
       </div>
     </header>
 
+    <main id="contentWrap">
     <!-- splashscreen for start of game -->
     <section id="starterSplash">
       <h1>Javascript Code Quiz</h1>
@@ -44,13 +45,12 @@
     <!-- end of splashscreen -->
 
     <!-- actual quiz components go here -->
-    <main id="contentWrap">
       <h3 id="questionText"></h3>
-      <div id="answers">
-        <button id="answerA"></button>
-        <button id="answerB"></button>
-        <button id="answerC"></button>
-        <button id="answerD"></button>
+      <div id="answers" class="hidden">
+        <button id="answerA">ANSWER A</button>
+        <button id="answerB">ANSWER B</button>
+        <button id="answerC">ANSWER C</button>
+        <button id="answerD">ANSWER D</button>
       </div>
     </main>
     <!-- end of page don't need footer -->
