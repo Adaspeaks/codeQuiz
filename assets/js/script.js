@@ -95,6 +95,11 @@ function decreaseTimer(){
 
 
 //event listeners for the page
+
+startBtn.addEventListener("click", function(e){
+starterSplash.setAttribute("class", "hidden")
+getHighScore.setAttribute("class", "hidden")
+});
 getHighScore.addEventListener("click", function(e){
     e.preventDefault();
     viewHighscore();
