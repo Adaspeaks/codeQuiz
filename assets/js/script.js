@@ -9,9 +9,10 @@ const answerA = document.querySelector("#answerB");
 const answerA = document.querySelector("#answerC");
 const answerA = document.querySelector("#answerD");
 
-function viewHighscore(){
-    
 
+function viewHighscore(){
+    getHighScore.setAttribute("class", "hidden"),
+    starterSplash.setAttribute("class","hidden")
 };
 
 const questions = [
@@ -66,3 +67,43 @@ const questions = [
         correct: "answerC"
     }
 ];
+//clock settings
+let timer = 90;
+let clockInterval = setInterval(startClock, 1000);
+
+function startClock(){
+    if(starterSplash.className === "hidden"){
+        timer--;
+        currenTime.textContent = timer;
+    };
+    if(timer <= 0){
+        clearInterval(clockInterval);
+        endingSplash.classList.remove("hidden");
+        return
+    };
+};
+
+function decreaseTimer(){
+    timer = timer-10;
+    currenTime.textContent=timer;
+
+    if((timer) <= 0){
+        return
+    };
+};
+//end of clock settings
+
+
+//event listeners for the page
+getHighScore.addEventListener("click", function(e){
+    e.preventDefault();
+    viewHighscore();
+});
+
+deleteHighScore.addEventListener("click", function (e){
+    localStorage.clear();
+    highscoreList.innerHTML = "";
+});
+returnToStart.addEventListener("click", function(e){
+
+});
