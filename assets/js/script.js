@@ -14,7 +14,7 @@ function viewHighscore(){
     getHighScore.setAttribute("class", "hidden"),
     starterSplash.setAttribute("class","hidden")
 };
-
+//array of questions to be pulled
 const questions = [
     {
         question:"Choose the 3rd option",
@@ -70,7 +70,9 @@ const questions = [
 //clock settings
 let timer = 90;
 let clockInterval = setInterval(startClock, 1000);
+// gameOver(){
 
+// };
 function startClock(){
     if(starterSplash.className === "hidden"){
         timer--;
@@ -78,7 +80,7 @@ function startClock(){
     };
     if(timer <= 0){
         clearInterval(clockInterval);
-        endingSplash.classList.remove("hidden");
+        gameOver()
         return
     };
 };
