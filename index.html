@@ -8,17 +8,13 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body id="pageContainer">
-    <header id="header">
-      <div id="highScore">
-        <button type="button" id="viewHighscore">View Highscores</button>
-      </div>
-      <div id="clock" class="hidden">
-        <p><span id="currentTime">90</span></p>
-      </div>
-      <div id="scoreWrap" class="hidden">
-        <p><span id="currentScore">0</span></p>
-      </div>
-    </header>
+    <nav id="viewHighScore">
+      <a>View HighScores</a>
+    </nav>
+
+    <div id="clock">
+      <p>Time: <span id="currentTime">60</span></p>
+    </div>
 
     <main id="contentWrap">
       <!-- splashscreen for start of game -->
@@ -27,11 +23,7 @@
         <h2>Rules!</h2>
         <ul>
           <li>You have 90 seconds in order to answer 15 questions</li>
-          <li>
-            Each question is worth 1000 points and each wrong answer is worth
-            -100 points
-          </li>
-          <li>ALSO for every wrong answer you will also lose 10 seconds!</li>
+          <li>For every wrong answer you will also lose 10 seconds!</li>
           <li>
             The game ends when you get all 15 questions right, or you run out of
             time.
