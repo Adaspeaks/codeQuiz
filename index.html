@@ -10,7 +10,7 @@
   <body id="pageContainer">
     <header id="header">
       <div id="highScore">
-        <button id="viewHighscore">View Highscores</button>
+        <button type="button" id="viewHighscore">View Highscores</button>
       </div>
       <div id="clock" class="hidden">
         <p><span id="currentTime">90</span></p>
@@ -44,7 +44,7 @@
       <!-- end of splashscreen -->
 
       <!-- begin of killScreen -->
-      <div class="killScreen hidden">
+      <div id="killScreen hidden">
         <h2>CONGRATS!</h2>
         <h3>Your final highscoe is:</h3>
         <form id="scoreTrack">
@@ -56,19 +56,19 @@
       <!-- end of killScreen -->
 
       <!-- begin of highscoe -->
-      <div class="highscores hidden">
+      <div id="highscores hidden">
         <form>
           <h2>Highscores</h2>
           <div>
-            <ul class="InitialList"></ul>
+            <ul id="initialList"></ul>
           </div>
           <div class="prevHighScore hidden">
             Previous HighScores
             <ul></ul>
           </div>
           <div id="highscoreBtns">
-            <button type="button" class="resetInitialsList">Reset</button>
-            <button type="button" class="Home">Back to Start</button>
+            <button type="button" id="resetInitialsList">Reset</button>
+            <button type="button" id="home">Back to Start</button>
           </div>
         </form>
       </div>
