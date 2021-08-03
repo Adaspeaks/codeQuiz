@@ -18,37 +18,32 @@
 
     <main id="contentWrap">
       <!-- splashscreen for start of game -->
-      <div id="staterSplash">
-        <h1>Javascript Code Quiz</h1>
-        <h2>Rules!</h2>
-        <ul>
-          <li>You have 90 seconds in order to answer 15 questions</li>
-          <li>For every wrong answer you will also lose 10 seconds!</li>
-          <li>
-            The game ends when you get all 15 questions right, or you run out of
-            time.
-          </li>
-          <li>TRY FOR A <span>HIGH SCORE</span>!</li>
-          <li>The game starts when you press the shiny button below!</li>
-        </ul>
-        <button id="startBtn">SHINY</button>
+      <div class="visable" id="staterSplash">
+        <header>
+          <h1>Worst Quiz Ever</h1>
+        </header>
+        <p id="starterSplashTxt">
+          Answer the following questions within the time alloted. 
+          Incorrect answers will dock you 5 seconds. Try for a highScore!
+        </p>
+        <button type="button" id="startBtn">Start</button>
       </div>
       <!-- end of splashscreen -->
 
       <!-- begin of killScreen -->
-      <div id="killScreen hidden">
+      <div class="hidden" id="killScreen">
         <h2>CONGRATS!</h2>
-        <h3>Your final highscoe is:</h3>
+        <h3>Your final highscore is:</h3>
         <form id="scoreTrack">
           <label for="initials">Enter your Initials</label>
           <input type="text" id="initials" />
-          <button type="submit" class="btn" id="submitBtn">Submit</button>
+          <button type="button" class="btn" id="submitBtn">Submit</button>
         </form>
       </div>
       <!-- end of killScreen -->
 
       <!-- begin of highscoe -->
-      <div id="highscores hidden">
+      <div class="hidden" id="highscores">
         <form>
           <h2>Highscores</h2>
           <div>
@@ -69,10 +64,10 @@
       <!-- actual quiz components go here -->
       <div id="answers" class="hidden">
         <h3 id="questionText"></h3>
-        <button id="answerA">ANSWER A</button>
-        <button id="answerB">ANSWER B</button>
-        <button id="answerC">ANSWER C</button>
-        <button id="answerD">ANSWER D</button>
+        <button class="answerBtn" id="answerA">ANSWER A</button>
+        <button class="answerBtn" id="answerB">ANSWER B</button>
+        <button class="answerBtn" id="answerC">ANSWER C</button>
+        <button class="answerBtn" id="answerD">ANSWER D</button>
       </div>
     </main>
     <!-- end of page don't need footer -->
