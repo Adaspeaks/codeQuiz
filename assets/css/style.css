@@ -9,3 +9,127 @@
  color:rgb(16, 14, 14);
 }
 
+#viewHighScore {
+  margin-top: -20px;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 45%;
+  flex-wrap: nowrap;
+}
+
+#viewHighScore a{
+  color:rgb(91, 39, 139);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#viewHighScore:hover {
+  cursor: grab;
+}
+
+#viewHighScore:active {
+  opacity: 50%;
+}
+
+#clock {
+    margin-top:-20px;
+    margin-right:0px;
+    padding-right:0px;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 45%;
+    flex-wrap: nowrap;
+}
+
+#clock p {
+  font-weight: bold;
+    align-items:flex-end;
+}
+
+#starterSplashTxt {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.5;
+  margin-bottom: 40px;
+}
+h1 {
+  text-align: center;
+    font-size: 2rem;
+}
+
+
+h2 {
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+h3 {
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+#startBtn{
+  display:block;
+  margin: auto;
+  text-align: center;
+  width: 30%;
+}
+
+#killScreen{
+  text-align: center;
+}
+
+#initialList {
+  margin-left: -14px;
+}
+
+#highScoreBtn{
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+ .answerBtn{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 200px;
+  text-align: left;
+  margin-left: 0px;}
+
+  .prevHighScore{
+    text-align: center;
+  }
+  
+  #highscoreBtns{
+    display:block;
+  margin: auto;
+  text-align: center;
+  width: 30%;
+  }
+
+.visable {
+  display: block;
+  margin: auto;
+    width: 45%;
+}
+
+button, input[type=button], #submitBtn {
+  background-color: rgb(91, 39, 139);
+  border-radius: 5px;
+  font-weight:bold;
+  color: white;
+}
+
+button:hover, input[type=button]:hover, #submitBtn:hover {
+  border: rgb(197, 41, 197) 4px solid;
+  cursor: pointer;
+}
+.hidden {
+  display: none; 
+}
