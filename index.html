@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Code Quiz</title>
-    <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body id="pageContainer">
@@ -22,16 +21,15 @@
     </header>
 
     <main id="contentWrap">
-    <!-- splashscreen for start of game -->
-    <section>
+      <!-- splashscreen for start of game -->
       <div id="staterSplash">
         <h1>Javascript Code Quiz</h1>
         <h2>Rules!</h2>
         <ul>
           <li>You have 90 seconds in order to answer 15 questions</li>
           <li>
-            Each question is worth 1000 points and each wrong answer is worth -100
-            points
+            Each question is worth 1000 points and each wrong answer is worth
+            -100 points
           </li>
           <li>ALSO for every wrong answer you will also lose 10 seconds!</li>
           <li>
@@ -43,12 +41,42 @@
         </ul>
         <button id="startBtn">SHINY</button>
       </div>
-    </section>
-    <!-- end of splashscreen -->
+      <!-- end of splashscreen -->
 
-    <!-- actual quiz components go here -->
-      <h3 id="questionText"></h3>
+      <!-- begin of killScreen -->
+      <div class="killScreen hidden">
+        <h2>CONGRATS!</h2>
+        <h3>Your final highscoe is:</h3>
+        <form id="scoreTrack">
+          <label for="initials">Enter your Initials</label>
+          <input type="text" id="initials" />
+          <button type="submit" class="btn" id="submitBtn">Submit</button>
+        </form>
+      </div>
+      <!-- end of killScreen -->
+
+      <!-- begin of highscoe -->
+      <div class="highscores hidden">
+        <form>
+          <h2>Highscores</h2>
+          <div>
+            <ul class="InitialList"></ul>
+          </div>
+          <div class="prevHighScore hidden">
+            Previous HighScores
+            <ul></ul>
+          </div>
+          <div id="highscoreBtns">
+            <button type="button" class="resetInitialsList">Reset</button>
+            <button type="button" class="Home">Back to Start</button>
+          </div>
+        </form>
+      </div>
+      <!-- end of hgihscore -->
+
+      <!-- actual quiz components go here -->
       <div id="answers" class="hidden">
+        <h3 id="questionText"></h3>
         <button id="answerA">ANSWER A</button>
         <button id="answerB">ANSWER B</button>
         <button id="answerC">ANSWER C</button>
