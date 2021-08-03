@@ -5,6 +5,7 @@ const starterSplash = document.querySelector("#starterSplash");
 const startBtn = document.querySelector("#startBtn");
 const killscreen = document.querySelector("#killScreen");
 const submitHighScoreBtn = document.querySelector("#submitBtn");
+const initialsForm = document.querySelector("#initials");
 const initialsList = document.querySelector("#initialList");
 const prevHighScore = document.querySelector("#prevHighscore");
 const resetInitialsListBtn = document.querySelector("#resetInitialsList");
@@ -14,6 +15,9 @@ const answerA = document.querySelector("#answerA");
 const answerB = document.querySelector("#answerB");
 const answerC = document.querySelector("#answerC");
 const answerD = document.querySelector("#answerD");
+
+const scoresArray = JSON.parse(localStorage.getItem("scoresArray"));
+let prevScoresArray = [];
 
 //array of questions to be pulled
 // const questions = [
@@ -68,3 +72,56 @@ const answerD = document.querySelector("#answerD");
 //         correct: "answerC"
 //     }
 // ];
+function initialsAdd(){
+    let listItem = document.createElement("li");
+    initialsList.innerHTML = "HIGH SCORE";
+
+    listItem.setAttribute("style", "background-color: rgb(91, 39, 139); width: 300px; border-radius:10px; opacity: 80%; font-weight: bold; color: white ")
+    initialsList.append(listItem);
+    initialsList.append(initialsForm).value;
+    listItem.append(" ====",timer)
+};
+
+function putScores(){
+    if(initialsList.className !== "hidden") {
+        let currentScore = {
+            initials: document.querySelector(initialsForm).value,
+            timeLeft: timerLeft
+        };
+
+        if(localStorage.scoresArray != null){
+            prevScoresArray = JSON.parse(localStorage.getItem("scoresArray"));
+            prevScoresArray.push(currentScore);
+            localStorage.setItem("scoresArray", JSON.stringify(prevScoresArray));
+        };
+    };
+};
+
+function displayScores() {
+  if (scoresArray !== null) {
+    initialsList.innerHTML = "HIGH SCORES";
+    initialsList.classList.remove("hidden");
+
+    for (let i = 0; i < scoresArray.length; i++) {
+      finalScore = scoresArray[i].initials + "====" + scoresArray[i].timeLeft;
+      let scoreSlot = document.createElement("li");
+      scoreSlot.textContent = finalScore;
+
+      initialsList.append(scoreSlot);
+    }
+  } else return;
+}
+
+homeBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  location.reload();
+});
+
+resetInitialsListBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  if (localStorage !== null) {
+    location.reload();
+  }
+  localStorage.clear();
+});
