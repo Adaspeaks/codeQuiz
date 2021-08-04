@@ -11,96 +11,159 @@ const prevHighScore = document.querySelector("#prevHighscore");
 const resetInitialsListBtn = document.querySelector("#resetInitialsList");
 const homeBtn = document.querySelector("#home");
 const questionTxt = document.querySelector("#questionText");
-const answerA = document.querySelector("#answerA");
-const answerB = document.querySelector("#answerB");
-const answerC = document.querySelector("#answerC");
-const answerD = document.querySelector("#answerD");
+const answerBtns = document.querySelector("input[type=button]");
+const q1 = document.querySelector(".question1");
+const q2 = document.querySelector(".question2");
+const q3 = document.querySelector(".question3");
+const q4 = document.querySelector(".question4");
+const q5 = document.querySelector(".question5");
+const q6 = document.querySelector(".question6");
+const q7 = document.querySelector(".question7");
+const q8 = document.querySelector(".question8");
+const q9 = document.querySelector(".question9");
+const q10 = document.querySelector(".question10");
+
+const isVisable = document.querySelector(".visable");
+
+let state = "revealed";
+let qi = 1;
+let secondsLeft = 60;
+let timerInterval = setInterval(startTimer, 1000);
 
 const scoresArray = JSON.parse(localStorage.getItem("scoresArray"));
 let prevScoresArray = [];
 
-//array of questions to be pulled
-// const questions = [
-//     {
-//         question:"Choose the 3rd option",
-//         options:{answerA:"A: 3rd",answerB:"B: 3rd",answerC:"C: actually 3rd",answerD:"D: 4th"},
-//         correct: "answerC"
-//     },
-//     {
-//         question:"the answer is C",
-//         options:{answerA:"A",answerB:"B",answerC:"C",answerD:"D"},
-//         correct: "answerC"
-//     },
-//     {
-//         question:"Like a standardized test, the answer is still C",
-//         options:{answerA:"A",answerB:"B",answerC:"C",answerD:"D"},
-//         correct: "answerC"
-//     },
-//     {
-//         question:"I lied, the answer is D now",
-//         options:{answerA:"A",answerB:"B",answerC:"C",answerD:"D"},
-//         correct: "answerD"
-//     },
-//     {
-//         question:"QUICK! What was the answer to the first question!?",
-//         options:{answerA:"A",answerB:"B",answerC:"C",answerD:"D"},
-//         correct: "answerC"
-//     },
-//     {
-//         question:"See I told you the answer was always C",
-//         options:{answerA:"A",answerB:"B",answerC:"C",answerD:"D"},
-//         correct: "answerC"
-//     },
-//     {
-//         question:"Allthough doing this may actually develop a pavlov response...",
-//         options:{answerA:"A",answerB:"B",answerC:"C",answerD:"D"},
-//         correct: "answerC"
-//     },
-//     {
-//         question:"And that may not be good...",
-//         options:{answerA:"A",answerB:"B",answerC:"C",answerD:"D"},
-//         correct: "answerC"
-//     },
-//     {
-//         question:"you know let's break the pattern choose A.",
-//         options:{answerA:"A",answerB:"B",answerC:"C",answerD:"D"},
-//         correct: "answerC"
-//     },
-//     {
-//         question:"If you fell for it, I'm dissapointed and ashamed... choose C",
-//         options:{answerA:"A",answerB:"B",answerC:"C",answerD:"D"},
-//         correct: "answerC"
-//     }
-// ];
-function initialsAdd(){
-    let listItem = document.createElement("li");
-    initialsList.innerHTML = "HIGH SCORE";
+function startTimer() {
+  if (starterSplash.className === "hidden") {
+    secondsLeft--;
+    timer.textContent = secondsLeft;
+  }
+  if (secondsLeft <= 0 || killscreen.className === "visable") {
+    clearInterval(timerInterval);
+    q1.setAttribute("class", "hidden");
+    q2.setAttribute("class", "hidden");
+    q3.setAttribute("class", "hidden");
+    q4.setAttribute("class", "hidden");
+    q5.setAttribute("class", "hidden");
+    q6.setAttribute("class", "hidden");
+    q7.setAttribute("class", "hidden");
+    q8.setAttribute("class", "hidden");
+    q9.setAttribute("class", "hidden");
+    q10.setAttribute("class", "hidden");
+    killscreen.setAttribute("class", "visable");
+  }
+}
 
-    listItem.setAttribute("style", "background-color: rgb(91, 39, 139); width: 300px; border-radius:10px; opacity: 80%; font-weight: bold; color: white ")
-    initialsList.append(listItem);
-    initialsList.append(initialsForm).value;
-    listItem.append(" ====",timer)
-};
+function decreaseTimer() {
+  secondsLeft = secondsLeft = 10;
+  timer.textContent = secondsLeft;
 
-function putScores(){
-    if(initialsList.className !== "hidden") {
-        let currentScore = {
-            initials: document.querySelector(initialsForm).value,
-            timeLeft: timerLeft
-        };
+  if (secondsLeft <= 0) {
+    return;
+  }
+}
 
-        if(localStorage.scoresArray != null){
-            prevScoresArray = JSON.parse(localStorage.getItem("scoresArray"));
-            prevScoresArray.push(currentScore);
-            localStorage.setItem("scoresArray", JSON.stringify(prevScoresArray));
-        };
+function checkAnswer() {
+  if (this.id === "correct") {
+    if (qi === 1) {
+      document.querySelector("#right1").setAttribute("class", "visable");
+    } else if (qi === 2) {
+      document.querySelector("#right2").setAttribute("class", "visable");
+    } else if (qi === 3) {
+      document.querySelector("#right3").setAttribute("class", "visable");
+    } else if (qi === 4) {
+      document.querySelector("#right4").setAttribute("class", "visable");
+    } else if (qi === 5) {
+      document.querySelector("#right5").setAttribute("class", "visable");
+    } else if (qi === 6) {
+      document.querySelector("#right6").setAttribute("class", "visable");
+    } else if (qi === 7) {
+      document.querySelector("#right7").setAttribute("class", "visable");
+    } else if (qi === 8) {
+      document.querySelector("#right8").setAttribute("class", "visable");
+    } else if (qi === 9) {
+      document.querySelector("#right9").setAttribute("class", "visable");
+    } else if (qi === 10) {
+      document.querySelector("#right10").setAttribute("class", "visable");
+    }
+  } else {
+    if (qi === 1) {
+      document.querySelector("#wrong1").setAttribute("class", "visable");
+      decreaseTimer();
+    } else if (qi === 2) {
+      document.querySelector("#wrong2").setAttribute("class", "visable");
+      decreaseTimer();
+    } else if (qi === 3) {
+      document.querySelector("#wrong2").setAttribute("class", "visable");
+      decreaseTimer();
+    } else if (qi === 4) {
+      document.querySelector("#wrong2").setAttribute("class", "visable");
+      decreaseTimer();
+    } else if (qi === 5) {
+      document.querySelector("#wrong2").setAttribute("class", "visable");
+      decreaseTimer();
+    } else if (qi === 6) {
+      document.querySelector("#wrong2").setAttribute("class", "visable");
+      decreaseTimer();
+    } else if (qi === 7) {
+      document.querySelector("#wrong2").setAttribute("class", "visable");
+      decreaseTimer();
+    } else if (qi === 8) {
+      document.querySelector("#wrong2").setAttribute("class", "visable");
+      decreaseTimer();
+    } else if (qi === 9) {
+      document.querySelector("#wrong2").setAttribute("class", "visable");
+      decreaseTimer();
+    } else if (qi === 10) {
+      document.querySelector("#wrong2").setAttribute("class", "visable");
+      decreaseTimer();
+    }
+  }
+  qi++;
+}
+
+function getHighScoreList() {
+  starterSplash.setAttribute("class", "hidden");
+  q1.setAttribute("class", "hidden");
+  q2.setAttribute("class", "hidden");
+  q3.setAttribute("class", "hidden");
+  q4.setAttribute("class", "hidden");
+  q5.setAttribute("class", "hidden");
+  killscreen.setAttribute("class", "hidden");
+}
+
+function initialsAdd() {
+  let listItem = document.createElement("li");
+  initialsList.innerHTML = "HIGH SCORE";
+
+  listItem.setAttribute(
+    "style",
+    "background-color: rgb(91, 39, 139); width: 300px; border-radius:10px; opacity: 80%; font-weight: bold; color: white "
+  );
+  initialsList.append(listItem);
+  initialsList.append(initialsForm).value;
+  listItem.append(" ====", timer);
+}
+
+function putScores() {
+  if (initialsList.className === "visable") {
+    let currentScore = {
+      initials: document.querySelector(initialsForm).value,
+      timeLeft: timerLeft,
     };
-};
+
+    if (localStorage.scoresArray != null) {
+      prevScoresArray = JSON.parse(localStorage.getItem("scoresArray"));
+      prevScoresArray.push(currentScore);
+      localStorage.setItem("scoresArray", JSON.stringify(prevScoresArray));
+    }
+  }
+}
 
 function displayScores() {
   if (scoresArray !== null) {
     initialsList.innerHTML = "HIGH SCORES";
-    initialsList.classList.remove("hidden");
+    initialsList.setAttribute("class", "visable");
 
     for (let i = 0; i < scoresArray.length; i++) {
       finalScore = scoresArray[i].initials + "====" + scoresArray[i].timeLeft;
@@ -111,6 +174,42 @@ function displayScores() {
     }
   } else return;
 }
+
+for (let i = 0; i < answerBtns.length; i++) {
+  answerBtns[i].addEventListener("click", checkAnswer);
+}
+splashScreen.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  if (state === "revealed") {
+    state = "";
+    start.setAttribute("class", "hide");
+    q1.setAttribute("class", "visable");
+  }
+  startTimer();
+});
+killscreen.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  initialsAdd();
+
+  if (state === "revealed") {
+    state = "";
+    killscreen.setAttribute("class", "hidden");
+    initialsList.setAttribute("class", "visable");
+
+    putScores();
+    displayScores();
+  }
+});
+
+viewHighScoreBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  getHighScoreList();
+  initialsList.setAttribute("class", "hidden");
+  clearInterval(timerInterval);
+  displayScores();
+});
 
 homeBtn.addEventListener("click", function (e) {
   e.preventDefault();
