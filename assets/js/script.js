@@ -1,356 +1,214 @@
-const viewHighScoreBtn = document.querySelector(".viewHighScore");
-const timer = document.querySelector("#currentTime");
-const currentScore = document.querySelector("#currentScore");
-const starterSplash = document.querySelector(".starterSplash");
-const startBtn = document.querySelector("#startBtn");
-const killscreen = document.querySelector(".killScreen");
-const submitHighScoreBtn = document.querySelector("#submitBtn");
-const initialsForm = document.querySelector("#initials");
-const initialsList = document.querySelector("#initialList");
-const prevHighScore = document.querySelector("#prevHighscore");
-const resetInitialsListBtn = document.querySelector(".resetInitialsList");
-const homeBtn = document.querySelector(".home");
-const q1 = document.querySelector(".question1");
-const q2 = document.querySelector(".question2");
-const q3 = document.querySelector(".question3");
-const q4 = document.querySelector(".question4");
-const q5 = document.querySelector(".question5");
-const q6 = document.querySelector(".question6");
-const q7 = document.querySelector(".question7");
-const q8 = document.querySelector(".question8");
-const q9 = document.querySelector(".question9");
-const q10 = document.querySelector(".question10");
-
-let answerBtns = document.querySelector("input[type=button]");
-let state = "revealed";
-let qi = 1;
-let secondsLeft = 60;
-let timerInterval = setInterval(startTimer, 1000);
+const startBtn = document.getElementById("start-btn")
+const scoreBtn = document.getElementById("score-btn")
+const quizContainerEl = document.getElementById("quizContainer")
+const timerContainerEl = document.getElementById("timer-container")
+const questionEl = document.getElementById("questions")
+const answerBtnEl = document.getElementById("li-btn")
+const nameEl = document.getElementById("killScreen")
+const highscoreEl = document.getElementById("highscores")
+const finalScore = document.getElementById("score")
+const submitBtn = document.getElementById("submit-btn")
 
 
-const scoresArray = JSON.parse(localStorage.getItem("scoresArray"));
-let prevScoresArray = [];
 
-function startTimer() {
-  if (starterSplash.className === "hidden") {
-    secondsLeft--;
-    timer.textContent = secondsLeft;
+// timer setup
+let timerElement= document.querySelector(".timer-count");
+let timer, timerCount;
+let quizDone = false
+let questionIndex= 0;
+
+let score;
+let highscores= JSON.parse(localStorage.getItem("scoreBoard")) || [];
+
+function quizTimer() {
+    timer= setInterval(function(){
+      timerCount--;
+      timerElement.textContent = timerCount;
+      //test if quiz is finished
+      if (quizDone || timerCount <= 0) {
+        clearInterval(timer);
+        quizEnd();
+      }
+    }, 1000);
   }
-  if (secondsLeft <= 0 || killscreen.className === "visable") {
-    clearInterval(timerInterval);
-    q1.setAttribute("class", "hidden");
-    q2.setAttribute("class", "hidden");
-    q3.setAttribute("class", "hidden");
-    q4.setAttribute("class", "hidden");
-    q5.setAttribute("class", "hidden");
-    q6.setAttribute("class", "hidden");
-    q7.setAttribute("class", "hidden");
-    q8.setAttribute("class", "hidden");
-    q9.setAttribute("class", "hidden");
-    q10.setAttribute("class", "hidden");
-    killscreen.setAttribute("class", "visable");
-    return;
+  // end of timer
+  
+function startQuiz() {
+    startBtn.classList.add("hidden")
+    scoreBtn.classList.add("hidden")
+    quizContainerEl.classList.remove("hidden")
+    timerContainerEl.classList.remove("hidden")
+    quizDone = false
+    timerCount = 60
+    score = 0
+    quizTimer()
+    displayQuestion()
   }
-}
-
-function decreaseTimer() {
-  secondsLeft = secondsLeft = 5;
-  timer.textContent = secondsLeft;
-
-  if (secondsLeft <= 0) {
-    return;
+  
+  function displayQuestion() {
+    questionEl.innerText = questions[questionIndex].question
+    document.querySelector("#choices").innerHTML = ""
+    questions[questionIndex].answer.forEach(function(item){
+      let button = document.createElement("button")
+      button.innerText = item
+      button.setAttribute("class", "btn")
+      button.addEventListener("click", checkAnswer)
+      document.querySelector("#choices").appendChild(button)
+    })
   }
-}
-
-function checkAnswer() {
-  if (this.id === "correct") {
-    if (qi === 1) {
-      document.querySelector("#right1").setAttribute("class", "visable");
-    } else if (qi === 2) {
-      document.querySelector("#right2").setAttribute("class", "visable");
-    } else if (qi === 3) {
-      document.querySelector("#right3").setAttribute("class", "visable");
-    } else if (qi === 4) {
-      document.querySelector("#right4").setAttribute("class", "visable");
-    } else if (qi === 5) {
-      document.querySelector("#right5").setAttribute("class", "visable");
-    } else if (qi === 6) {
-      document.querySelector("#right6").setAttribute("class", "visable");
-    } else if (qi === 7) {
-      document.querySelector("#right7").setAttribute("class", "visable");
-    } else if (qi === 8) {
-      document.querySelector("#right8").setAttribute("class", "visable");
-    } else if (qi === 9) {
-      document.querySelector("#right9").setAttribute("class", "visable");
-    } else if (qi === 10) {
-      document.querySelector("#right10").setAttribute("class", "visable");
+  
+  function checkAnswer(event){
+    let answer = event.target.textContent
+    if (answer === questions[questionIndex].correctAnswer){
+        score += 25
     }
-  } else {
-    if (qi === 1) {
-      document.querySelector("#wrong1").setAttribute("class", "visable");
-      decreaseTimer();
-    } else if (qi === 2) {
-      document.querySelector("#wrong2").setAttribute("class", "visable");
-      decreaseTimer();
-    } else if (qi === 3) {
-      document.querySelector("#wrong2").setAttribute("class", "visable");
-      decreaseTimer();
-    } else if (qi === 4) {
-      document.querySelector("#wrong2").setAttribute("class", "visable");
-      decreaseTimer();
-    } else if (qi === 5) {
-      document.querySelector("#wrong2").setAttribute("class", "visable");
-      decreaseTimer();
-    } else if (qi === 6) {
-      document.querySelector("#wrong2").setAttribute("class", "visable");
-      decreaseTimer();
-    } else if (qi === 7) {
-      document.querySelector("#wrong2").setAttribute("class", "visable");
-      decreaseTimer();
-    } else if (qi === 8) {
-      document.querySelector("#wrong2").setAttribute("class", "visable");
-      decreaseTimer();
-    } else if (qi === 9) {
-      document.querySelector("#wrong2").setAttribute("class", "visable");
-      decreaseTimer();
-    } else if (qi === 10) {
-      document.querySelector("#wrong2").setAttribute("class", "visable");
-      decreaseTimer();
+    else {
+      timerCount -= 20
+    }
+    questionIndex++
+    if (questionIndex === questions.length){
+      quizDone = true;
+      quizEnd()
+    }
+    else {
+      displayQuestion()
     }
   }
-  qi++;
+  
+  function quizEnd(){
+    quizContainerEl.classList.add("hidden")
+    timerContainerEl.classList.add("hidden")
+    nameEl.classList.remove("hidden")
+    finalScore.innerText = "Your Score: " + score
+    showBoard()
+  }
+  
+  function showBoard(){
+    highscoreEl.classList.remove("hidden")
+  highscores.sort(function(a, b){return b.score - a.score})
+  document.getElementById("highscores").innerHTML = ""
+  highscores.forEach(function (foo){
+    let newScore = document.createElement("li")
+    newScore.textContent = foo.name + " " + foo.score
+    document.getElementById("highscores").appendChild(newScore)
+  })
 }
 
-function getHighScoreList() {
-  starterSplash.setAttribute("class", "hidden");
-  q1.setAttribute("class", "hidden");
-  q2.setAttribute("class", "hidden");
-  q3.setAttribute("class", "hidden");
-  q4.setAttribute("class", "hidden");
-  q5.setAttribute("class", "hidden");
-  killscreen.setAttribute("class", "hidden");
-}
-
-function initialsAdd() {
-  let listItem = document.createElement("li");
-  initialsList.innerHTML = "HIGH SCORE";
-
-  listItem.setAttribute(
-    "style",
-    "background-color: rgb(91, 39, 139); width: 300px; border-radius:10px; opacity: 80%; font-weight: bold; color: white "
-  );
-  initialsList.append(listItem);
-  initialsList.append(initialsForm).value;
-  listItem.append(" ====", timer);
-}
-
-function putScores() {
-  if (initialsList.className === "visable") {
-    let currentScore = {
-      initials: document.querySelector(".initialsForm").value,
-      timeLeft: timerLeft,
-    };
-
-    if (localStorage.scoresArray != null) {
-      prevScoresArray = JSON.parse(localStorage.getItem("scoresArray"));
-      prevScoresArray.push(currentScore);
-      localStorage.setItem("scoresArray", JSON.stringify(prevScoresArray));
-    }
+function saveHighscore(){
+  let name = document.getElementById("initials").value
+    let entry = {name, score}
+    highscores.push(entry)
+    localStorage.setItem("scoreBoard", JSON.stringify(highscores));
+    showBoard();
   }
-}
-
-function displayScores() {
-  if (scoresArray !== null) {
-    initialsList.innerHTML = "HIGH SCORES";
-    initialsList.setAttribute("class", "visable");
-
-    for (let i = 0; i < scoresArray.length; i++) {
-      finalScore = scoresArray[i].initials + "====" + scoresArray[i].timeLeft;
-      let scoreSlot = document.createElement("li");
-      scoreSlot.textContent = finalScore;
-
-      initialsList.append(scoreSlot);
-    }
-  } else return;
-}
-
-for (let i = 0; i < answerBtns.length; i++) {
-  answerBtns[i].addEventListener("click", checkAnswer);
-}
-
-q1.addEventListener("click", function (e) {
-  e.preventDefault();
-
-  state = "visable";
-
-  if (state === "visable") {
-    setTimeout(function () {
-      state = "";
-      q1.setAttribute("class", "hidden");
-      q2.setAttribute("class", "visable");
-    }, 2000);
-  }
-});
-q2.addEventListener("click", function (e) {
-  e.preventDefault();
-
-  state = "visable";
-
-  if (state === "visable") {
-    setTimeout(function () {
-      state = "";
-      q2.setAttribute("class", "hidden");
-      q3.setAttribute("class", "visable");
-    }, 2000);
-  }
-});
-q3.addEventListener("click", function (e) {
-  e.preventDefault();
-
-  state = "visable";
-
-  if (state === "visable") {
-    setTimeout(function () {
-      state = "";
-      q3.setAttribute("class", "hidden");
-      q4.setAttribute("class", "visable");
-    }, 2000);
-  }
-});
-q4.addEventListener("click", function (e) {
-  e.preventDefault();
-
-  state = "visable";
-
-  if (state === "visable") {
-    setTimeout(function () {
-      state = "";
-      q4.setAttribute("class", "hidden");
-      q4.setAttribute("class", "visable");
-    }, 2000);
-  }
-});
-q5.addEventListener("click", function (e) {
-  e.preventDefault();
-
-  state = "visable";
-
-  if (state === "visable") {
-    setTimeout(function () {
-      state = "";
-      q5.setAttribute("class", "hidden");
-      q6.setAttribute("class", "visable");
-    }, 2000);
-  }
-});
-q6.addEventListener("click", function (e) {
-  e.preventDefault();
-
-  state = "visable";
-
-  if (state === "visable") {
-    setTimeout(function () {
-      state = "";
-      q6.setAttribute("class", "hidden");
-      q7.setAttribute("class", "visable");
-    }, 2000);
-  }
-});
-q7.addEventListener("click", function (e) {
-  e.preventDefault();
-
-  state = "visable";
-
-  if (state === "visable") {
-    setTimeout(function () {
-      state = "";
-      q7.setAttribute("class", "hidden");
-      q8.setAttribute("class", "visable");
-    }, 2000);
-  }
-});
-q8.addEventListener("click", function (e) {
-  e.preventDefault();
-
-  state = "visable";
-
-  if (state === "visable") {
-    setTimeout(function () {
-      state = "";
-      q8.setAttribute("class", "hidden");
-      q9.setAttribute("class", "visable");
-    }, 2000);
-  }
-});
-q9.addEventListener("click", function (e) {
-  e.preventDefault();
-
-  state = "visable";
-
-  if (state === "visable") {
-    setTimeout(function () {
-      state = "";
-      q9.setAttribute("class", "hidden");
-      q10.setAttribute("class", "visable");
-    }, 2000);
-  }
-});
-q1.addEventListener("click", function (e) {
-  e.preventDefault();
-
-  state = "visable";
-
-  if (state === "visable") {
-    setTimeout(function () {
-      state = "";
-      q10.setAttribute("class", "hidden");
-      killscreen.setAttribute("class", "visable");
-    }, 2000);
-  }
-});
- const starterSplashEl = starterSplash.addEventListener("click", function (e) {
-  e.preventDefault();
-
-  if (state === "revealed") {
-    state = "";
-    starterSplash.setAttribute("class", "hide");
-    q1.setAttribute("class", "visable");
-  }
-  startTimer();
-});
-killscreen.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  initialsAdd();
-
-  if (state === "revealed") {
-    state = "";
-    killscreen.setAttribute("class", "hidden");
-    initialsList.setAttribute("class", "visable");
-
-    putScores();
-    displayScores();
-  }
-});
-
-viewHighScoreBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  getHighScoreList();
-  initialsList.setAttribute("class", "visable");
-  clearInterval(timerInterval);
-  displayScores();
-});
-
-homeBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  location.reload();
-});
-
-resetInitialsListBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-
-  if (localStorage !== null) {
-    location.reload();
-  }
-  localStorage.clear();
-});
+  
+  //array for the questions 
+const questions = [
+  {
+    question: "Choose the 3rd option?",
+    answer: [
+      "<3rd>",
+      "<3rd>",
+      "<actually 3rd>",
+      "<4th>"
+    ],
+    correctAnswer: "<actually 3rd>"
+  },
+    {
+      question: "The answer is C?",
+      answer: [
+        "A",
+        "B",
+        "C",
+        "D"
+        ],
+        correctAnswer: "C"
+      },
+    {
+      question: "Like a standardized test, the answer is still C",
+      answer: [
+        "A",
+        "B",
+        "C",
+        "D"
+        ],
+        correctAnswer: "C"
+      },
+    {
+      question: "I lied, the answer is D now?",
+      answer: [
+        "A",
+        "B",
+        "C",
+        "D"
+        ],
+        correctAnswer: "D"
+      },
+    {
+      question: "QUICK! What was the answer to the first question!?",
+      answer: [
+        "A",
+        "B",
+        "C",
+        "D"
+        ],
+        correctAnswer: "C"
+      },
+    {
+      question: "See I told you the answer was always C",
+      answer: [
+        "A",
+        "B",
+        "C",
+        "D"
+        ],
+        correctAnswer: "C"
+      },
+    {
+      question: "Allthough doing this may actually develop trust issues...",
+      answer: [
+        "A",
+        "B",
+        "C",
+        "D"
+        ],
+        correctAnswer: "C"
+      },
+    {
+      question: "And that may not be good...?",
+      answer: [
+        "A",
+        "B",
+        "C",
+        "D"
+        ],
+        correctAnswer: "C"
+      },
+    {
+      question: "you know let's break the pattern choose A",
+      answer: [
+        "A",
+        "B",
+        "C",
+        "D"
+        ],
+        correctAnswer: "C"
+      },
+    {
+      question: "If you fell for it, I'm dissapointed and ashamed... choose C?",
+      answer: [
+        "A",
+        "B",
+        "C",
+        "D"
+        ],
+        correctAnswer: "C"
+      },
+      
+        ]
+        
+        
+        
+        startBtn.addEventListener("click", startQuiz)
+        submitBtn.addEventListener("click", saveHighscore)
+        scoreBtn.addEventListener("click", showBoard)

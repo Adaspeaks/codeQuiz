@@ -1,219 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Code Quiz</title>
-    <link rel="stylesheet" href="./assets/css/style.css" />
-  </head>
-  <body id="pageContainer">
-    <nav class="viewHighScore">
-      <a>View HighScores</a>
-    </nav>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie-edge">
+        <title>Javascript Quiz</title>
+        <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+    </head>
 
-    <div id="clock">
-      <p>Time: <span id="currentTime">60</span></p>
-    </div>
-
-    <main id="contentWrap">
-      <!-- splashscreen for start of game -->
-      <div class="starterSplash visable">
-        <header>
-          <h1>Worst Quiz Ever</h1>
-        </header>
-        <p>
-          Answer the following questions within the time alloted. 
-          Incorrect answers will dock you 5 seconds. Try for a highScore!
-        </p>
-        <button type="button" id="startBtn">Start</button>
-      </div>
-      <!-- end of splashscreen -->
-
-      <!-- begin of killScreen -->
-      <div class="killScreen hidden">
-        <h2>CONGRATS!</h2>
-        <h3>Your final highscore is:</h3>
-        <form id="scoreTrack">
-          <label for="initials">Enter your Initials</label>
-          <input type="text" id="initials" />
-          <input type="submit" class="btn" form="scoreTrack" id="submitBtn"></input>
-        </form>
-      </div>
-      <!-- end of killScreen -->
-
-      <!-- begin of highscoe -->
-      <div class="highScores hidden">
-        <form>
-          <h2>Highscores</h2>
-          <div>
-            <ul id="initialList"></ul>
-          </div>
-          <div class="prevHighScore hidden">
-            Previous HighScores
-            <ul></ul>
-          </div>
-          <div id="highscoreBtns">
-            <button type="button" class="resetInitialsList">Reset</button>
-            <button type="button" class="home">Back to Start</button>
-          </div>
-        </form>
-      </div>
-      <!-- end of hgihscore -->
-
-      <!-- actual quiz components go here -->
-      <div class="question1 hidden">
-        <h2>Choose the 3rd option</h2>
-        <form class="questionBtns">
-          <input type="button" id="incorrect" value="3rd">
-          <input type="button" id="incorrect" value="3rd">
-          <input type="button" id="correct" value="actually 3rd">
-          <input type="button" id="incorrect" value="4th">
-        </form>
-        <div class="hidden" id="right1">
-          <p>Correct!</p>
+    <body>
+        <div class="container">
+            <div id="quizContainer" class="hidden">
+                <div id="questions">Questions</div>
+                <div id="choices" class="li-btn">
+                </div>
+            </div>
+            <div id="nav">
+                <button id="start-btn" class="start-btn btn">Start</button>
+                <button id="score-btn" class="score-btn btn">High Scores</button>
+            </div>
+            <div class="hidden" id= "timer-container">
+                <div class= "timer-text">
+                <div class= "timer-count">90</div>
+            </div>
         </div>
-        <div class="hidden" id="wrong1">
-          <p>Wrong!</p>
+        <div id="killScreen" class="hidden">
+            <h5 id="score"></h5>
+            <label for="initials">Enter Your Name: </label>
+            <input type="text" id= "initials" name="initials">
+            <input id="submit-btn" type="submit" value="Submit">
         </div>
-      </div>
-      <div class="question2 hidden">
-        <h2>The answer is C</h2>
-        <form class="questionBtns">
-          <input type="button" id="incorrect" value="A">
-          <input type="button" id="incorrect" value="B">
-          <input type="button" id="correct" value="C">
-          <input type="button" id="incorrect" value="D">
-        </form>
-        <div class="hidden" id="right2">
-          <p>Correct!</p>
+        <div>
+            <ol id="highscores" class="hidden">
+            </ol>
         </div>
-        <div class="hidden" id="wrong2">
-          <p>Wrong!</p>
-        </div>
-      </div>
-      <div class="question3 hidden">
-        <h2>Like a standardized test, the answer is still C</h2>
-        <form class="questionBtns">
-          <input type="button" id="incorrect" value="A">
-          <input type="button" id="incorrect" value="B">
-          <input type="button" id="correct" value="C">
-          <input type="button" id="incorrect" value="D">
-        </form>
-        <div class="hidden" id="right3">
-          <p>Correct!</p>
-        </div>
-        <div class="hidden" id="wrong3">
-          <p>Wrong!</p>
-        </div>
-      </div>
-      <div class="question4 hidden">
-        <h2>I lied, the answer is D now</h2>
-        <form class="questionBtns">
-          <input type="button" id="incorrect" value="A">
-          <input type="button" id="incorrect" value="B">
-          <input type="button" id="incorrect" value="C">
-          <input type="button" id="correct" value="D">
-        </form>
-        <div class="hidden" id="right4">
-          <p>Correct!</p>
-        </div>
-        <div class="hidden" id="wrong4">
-          <p>Wrong!</p>
-        </div>
-      </div>
-      <div class="question5 hidden">
-        <h2>QUICK! What was the answer to the first question!?</h2>
-        <form class="questionBtns">
-          <input type="button" id="incorrect" value="A">
-          <input type="button" id="incorrect" value="B">
-          <input type="button" id="correct" value="C">
-          <input type="button" id="incorrect" value="D">
-        </form>
-        <div class="hidden" id="right5">
-          <p>Correct!</p>
-        </div>
-        <div class="hidden" id="wrong5">
-          <p>Wrong!</p>
-        </div>
-      </div>
-      <div class="question6 hidden">
-        <h2>See I told you the answer was always C</h2>
-        <form class="questionBtns">
-          <input type="button" id="incorrect" value="A">
-          <input type="button" id="incorrect" value="B">
-          <input type="button" id="correct" value="C">
-          <input type="button" id="incorrect" value="D">
-        </form>
-        <div class="hidden" id="right6">
-          <p>Correct!</p>
-        </div>
-        <div class="hidden" id="wrong6">
-          <p>Wrong!</p>
-        </div>
-      </div>
-      <div class="question7 hidden">
-        <h2>Allthough doing this may actually develop a pavlov response...</h2>
-        <form class="questionBtns">
-          <input type="button" id="incorrect" value="A">
-          <input type="button" id="incorrect" value="B">
-          <input type="button" id="correct" value="C">
-          <input type="button" id="incorrect" value="D">
-        </form>
-        <div class="hidden" id="right7">
-          <p>Correct!</p>
-        </div>
-        <div class="hidden" id="wrong7">
-          <p>Wrong!</p>
-        </div>
-      </div>
-      <div class="question8 hidden">
-        <h2>And that may not be good...</h2>
-        <form class="questionBtns">
-          <input type="button" id="incorrect" value="A">
-          <input type="button" id="incorrect" value="B">
-          <input type="button" id="correct" value="C">
-          <input type="button" id="incorrect" value="D">
-        </form>
-        <div class="hidden" id="right8">
-          <p>Correct!</p>
-        </div>
-        <div class="hidden" id="wrong8">
-          <p>Wrong!</p>
-        </div>
-      </div>
-      <div class="question9 hidden">
-        <h2>you know let's break the pattern choose A</h2>
-        <form class="questionBtns">
-          <input type="button" id="incorrect" value="A">
-          <input type="button" id="incorrect" value="B">
-          <input type="button" id="correct" value="C">
-          <input type="button" id="incorrect" value="D">
-        </form>
-        <div class="hidden" id="right9">
-          <p>Correct!</p>
-        </div>
-        <div class="hidden" id="wrong9">
-          <p>Wrong!</p>
-        </div>
-      </div>
-      <div class="question10 hidden">
-        <h2>If you fell for it, I'm dissapointed and ashamed... choose C</h2>
-        <form class="questionBtns">
-          <input type="button" id="incorrect" value="A">
-          <input type="button" id="incorrect" value="B">
-          <input type="button" id="correct" value="C">
-          <input type="button" id="incorrect" value="D">
-        </form>
-        <div class="hidden" id="right10">
-          <p>Correct!</p>
-        </div>
-        <div class="hidden" id="wrong10">
-          <p>Wrong!</p>
-        </div>
-      </div>
-    <!-- end of page don't need footer -->
-    </main>
-  </body>
+    </body>
+    <script src="./assets/js/script.js"></script>
 </html>
-<script src="./assets/js/script.js"></script>
