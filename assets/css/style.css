@@ -70,6 +70,42 @@ h3 {
   font-size: 1.3rem;
   text-align: center;
 }
+#right1 p,
+#right2 p,
+#right3 p,
+#right4 p,
+#right5 p,
+#right6 p,
+#right7 p,
+#right8 p,
+#right9 p,
+#right10 p {
+    text-align: left;
+    font-style: italic ;
+    font-size: 1.2rem;
+    margin-left: -250px;
+    border-top: 2px solid gray;
+    width: 700px;
+}
+
+#wrong1 p,
+#wrong2 p,
+#wrong3 p, 
+#wrong4 p,
+#wrong5 p,
+#wrong6 p,
+#wrong7 p,
+#wrong8 p,
+#wrong9 p,
+#wrong10 p {
+    text-align: left;
+    color: red;
+    font-style: italic ;
+    font-size: 1.2rem;
+    margin-left: -250px;
+    border-top: 2px solid gray;
+    width: 700px;
+} 
 
 #startBtn{
   display:block;
@@ -113,12 +149,6 @@ h3 {
   width: 30%;
   }
 
-.visable {
-  display: block;
-  margin: auto;
-    width: 45%;
-}
-
 button, input[type=button], #submitBtn {
   background-color: rgb(91, 39, 139);
   border-radius: 5px;
@@ -132,4 +162,10 @@ button:hover, input[type=button]:hover, #submitBtn:hover {
 }
 .hidden {
   display: none; 
+}
+
+.visable{
+  display: block;
+    margin: auto;
+    width: 45%;
 }
