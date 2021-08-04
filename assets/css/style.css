@@ -9,7 +9,7 @@
  color:rgb(16, 14, 14);
 }
 
-#viewHighScore {
+.viewHighScore {
   margin-top: -20px;
   display: inline-flex;
   flex-direction: row;
@@ -18,17 +18,17 @@
   flex-wrap: nowrap;
 }
 
-#viewHighScore a{
+.viewHighScore a{
   color:rgb(91, 39, 139);
   font-weight: bold;
   text-decoration: none;
 }
 
-#viewHighScore:hover {
+.viewHighScore:hover {
   cursor: grab;
 }
 
-#viewHighScore:active {
+.viewHighScore:active {
   opacity: 50%;
 }
 
@@ -48,7 +48,7 @@
     align-items:flex-end;
 }
 
-#starterSplashTxt {
+.starterSplash p {
   text-align: center;
   font-size: 1rem;
   font-weight: bold;

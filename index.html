@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body id="pageContainer">
-    <nav id="viewHighScore">
+    <nav class="viewHighScore">
       <a>View HighScores</a>
     </nav>
 
@@ -18,11 +18,11 @@
 
     <main id="contentWrap">
       <!-- splashscreen for start of game -->
-      <div id="staterSplash" class="visable">
+      <div class="starterSplash visable">
         <header>
           <h1>Worst Quiz Ever</h1>
         </header>
-        <p id="starterSplashTxt">
+        <p>
           Answer the following questions within the time alloted. 
           Incorrect answers will dock you 5 seconds. Try for a highScore!
         </p>
@@ -31,19 +31,19 @@
       <!-- end of splashscreen -->
 
       <!-- begin of killScreen -->
-      <div class="hidden" id="killScreen">
+      <div class="killScreen hidden">
         <h2>CONGRATS!</h2>
         <h3>Your final highscore is:</h3>
         <form id="scoreTrack">
           <label for="initials">Enter your Initials</label>
           <input type="text" id="initials" />
-          <button type="button" class="btn" id="submitBtn">Submit</button>
+          <input type="submit" class="btn" form="scoreTrack" id="submitBtn"></input>
         </form>
       </div>
       <!-- end of killScreen -->
 
       <!-- begin of highscoe -->
-      <div class="hidden" id="highscores">
+      <div class="highScores hidden">
         <form>
           <h2>Highscores</h2>
           <div>
@@ -54,8 +54,8 @@
             <ul></ul>
           </div>
           <div id="highscoreBtns">
-            <button type="button" id="resetInitialsList">Reset</button>
-            <button type="button" id="home">Back to Start</button>
+            <button type="button" class="resetInitialsList">Reset</button>
+            <button type="button" class="home">Back to Start</button>
           </div>
         </form>
       </div>
@@ -63,152 +63,152 @@
 
       <!-- actual quiz components go here -->
       <div class="question1 hidden">
-        <h2 id="questionText">Choose the 3rd option</h2>
+        <h2>Choose the 3rd option</h2>
         <form class="questionBtns">
           <input type="button" id="incorrect" value="3rd">
           <input type="button" id="incorrect" value="3rd">
           <input type="button" id="correct" value="actually 3rd">
           <input type="button" id="incorrect" value="4th">
         </form>
-        <div class="hide" id="right1">
+        <div class="hidden" id="right1">
           <p>Correct!</p>
         </div>
-        <div class="hide" id="wrong1">
+        <div class="hidden" id="wrong1">
           <p>Wrong!</p>
         </div>
       </div>
       <div class="question2 hidden">
-        <h2 id="questionText">The answer is C</h2>
+        <h2>The answer is C</h2>
         <form class="questionBtns">
           <input type="button" id="incorrect" value="A">
           <input type="button" id="incorrect" value="B">
           <input type="button" id="correct" value="C">
           <input type="button" id="incorrect" value="D">
         </form>
-        <div class="hide" id="right2">
+        <div class="hidden" id="right2">
           <p>Correct!</p>
         </div>
-        <div class="hide" id="wrong2">
+        <div class="hidden" id="wrong2">
           <p>Wrong!</p>
         </div>
       </div>
       <div class="question3 hidden">
-        <h2 id="questionText">Like a standardized test, the answer is still C</h2>
+        <h2>Like a standardized test, the answer is still C</h2>
         <form class="questionBtns">
           <input type="button" id="incorrect" value="A">
           <input type="button" id="incorrect" value="B">
           <input type="button" id="correct" value="C">
           <input type="button" id="incorrect" value="D">
         </form>
-        <div class="hide" id="right3">
+        <div class="hidden" id="right3">
           <p>Correct!</p>
         </div>
-        <div class="hide" id="wrong3">
+        <div class="hidden" id="wrong3">
           <p>Wrong!</p>
         </div>
       </div>
       <div class="question4 hidden">
-        <h2 id="questionText">I lied, the answer is D now</h2>
+        <h2>I lied, the answer is D now</h2>
         <form class="questionBtns">
           <input type="button" id="incorrect" value="A">
           <input type="button" id="incorrect" value="B">
           <input type="button" id="incorrect" value="C">
           <input type="button" id="correct" value="D">
         </form>
-        <div class="hide" id="right4">
+        <div class="hidden" id="right4">
           <p>Correct!</p>
         </div>
-        <div class="hide" id="wrong4">
+        <div class="hidden" id="wrong4">
           <p>Wrong!</p>
         </div>
       </div>
       <div class="question5 hidden">
-        <h2 id="questionText">QUICK! What was the answer to the first question!?</h2>
+        <h2>QUICK! What was the answer to the first question!?</h2>
         <form class="questionBtns">
           <input type="button" id="incorrect" value="A">
           <input type="button" id="incorrect" value="B">
           <input type="button" id="correct" value="C">
           <input type="button" id="incorrect" value="D">
         </form>
-        <div class="hide" id="right5">
+        <div class="hidden" id="right5">
           <p>Correct!</p>
         </div>
-        <div class="hide" id="wrong5">
+        <div class="hidden" id="wrong5">
           <p>Wrong!</p>
         </div>
       </div>
       <div class="question6 hidden">
-        <h2 id="questionText">See I told you the answer was always C</h2>
+        <h2>See I told you the answer was always C</h2>
         <form class="questionBtns">
           <input type="button" id="incorrect" value="A">
           <input type="button" id="incorrect" value="B">
           <input type="button" id="correct" value="C">
           <input type="button" id="incorrect" value="D">
         </form>
-        <div class="hide" id="right6">
+        <div class="hidden" id="right6">
           <p>Correct!</p>
         </div>
-        <div class="hide" id="wrong6">
+        <div class="hidden" id="wrong6">
           <p>Wrong!</p>
         </div>
       </div>
       <div class="question7 hidden">
-        <h2 id="questionText">Allthough doing this may actually develop a pavlov response...</h2>
+        <h2>Allthough doing this may actually develop a pavlov response...</h2>
         <form class="questionBtns">
           <input type="button" id="incorrect" value="A">
           <input type="button" id="incorrect" value="B">
           <input type="button" id="correct" value="C">
           <input type="button" id="incorrect" value="D">
         </form>
-        <div class="hide" id="right7">
+        <div class="hidden" id="right7">
           <p>Correct!</p>
         </div>
-        <div class="hide" id="wrong7">
+        <div class="hidden" id="wrong7">
           <p>Wrong!</p>
         </div>
       </div>
       <div class="question8 hidden">
-        <h2 id="questionText">And that may not be good...</h2>
+        <h2>And that may not be good...</h2>
         <form class="questionBtns">
           <input type="button" id="incorrect" value="A">
           <input type="button" id="incorrect" value="B">
           <input type="button" id="correct" value="C">
           <input type="button" id="incorrect" value="D">
         </form>
-        <div class="hide" id="right8">
+        <div class="hidden" id="right8">
           <p>Correct!</p>
         </div>
-        <div class="hide" id="wrong8">
+        <div class="hidden" id="wrong8">
           <p>Wrong!</p>
         </div>
       </div>
       <div class="question9 hidden">
-        <h2 id="questionText">you know let's break the pattern choose A</h2>
+        <h2>you know let's break the pattern choose A</h2>
         <form class="questionBtns">
           <input type="button" id="incorrect" value="A">
           <input type="button" id="incorrect" value="B">
           <input type="button" id="correct" value="C">
           <input type="button" id="incorrect" value="D">
         </form>
-        <div class="hide" id="right9">
+        <div class="hidden" id="right9">
           <p>Correct!</p>
         </div>
-        <div class="hide" id="wrong9">
+        <div class="hidden" id="wrong9">
           <p>Wrong!</p>
         </div>
       </div>
       <div class="question10 hidden">
-        <h2 id="questionText">If you fell for it, I'm dissapointed and ashamed... choose C</h2>
+        <h2>If you fell for it, I'm dissapointed and ashamed... choose C</h2>
         <form class="questionBtns">
           <input type="button" id="incorrect" value="A">
           <input type="button" id="incorrect" value="B">
           <input type="button" id="correct" value="C">
           <input type="button" id="incorrect" value="D">
         </form>
-        <div class="hide" id="right10">
+        <div class="hidden" id="right10">
           <p>Correct!</p>
         </div>
-        <div class="hide" id="wrong10">
+        <div class="hidden" id="wrong10">
           <p>Wrong!</p>
         </div>
       </div>

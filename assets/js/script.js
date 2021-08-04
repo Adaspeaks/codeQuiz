@@ -1,17 +1,15 @@
-const viewHighScoreBtn = document.querySelector("#viewHighScore");
+const viewHighScoreBtn = document.querySelector(".viewHighScore");
 const timer = document.querySelector("#currentTime");
 const currentScore = document.querySelector("#currentScore");
-const starterSplash = document.querySelector("#starterSplash");
+const starterSplash = document.querySelector(".starterSplash");
 const startBtn = document.querySelector("#startBtn");
-const killscreen = document.querySelector("#killScreen");
+const killscreen = document.querySelector(".killScreen");
 const submitHighScoreBtn = document.querySelector("#submitBtn");
 const initialsForm = document.querySelector("#initials");
 const initialsList = document.querySelector("#initialList");
 const prevHighScore = document.querySelector("#prevHighscore");
-const resetInitialsListBtn = document.querySelector("#resetInitialsList");
-const homeBtn = document.querySelector("#home");
-const questionTxt = document.querySelector("#questionText");
-const answerBtns = document.querySelector("input[type=button]");
+const resetInitialsListBtn = document.querySelector(".resetInitialsList");
+const homeBtn = document.querySelector(".home");
 const q1 = document.querySelector(".question1");
 const q2 = document.querySelector(".question2");
 const q3 = document.querySelector(".question3");
@@ -23,12 +21,12 @@ const q8 = document.querySelector(".question8");
 const q9 = document.querySelector(".question9");
 const q10 = document.querySelector(".question10");
 
-const isVisable = document.querySelector(".visable");
-
+let answerBtns = document.querySelector("input[type=button]");
 let state = "revealed";
 let qi = 1;
 let secondsLeft = 60;
 let timerInterval = setInterval(startTimer, 1000);
+
 
 const scoresArray = JSON.parse(localStorage.getItem("scoresArray"));
 let prevScoresArray = [];
@@ -51,11 +49,12 @@ function startTimer() {
     q9.setAttribute("class", "hidden");
     q10.setAttribute("class", "hidden");
     killscreen.setAttribute("class", "visable");
+    return;
   }
 }
 
 function decreaseTimer() {
-  secondsLeft = secondsLeft = 10;
+  secondsLeft = secondsLeft = 5;
   timer.textContent = secondsLeft;
 
   if (secondsLeft <= 0) {
@@ -148,7 +147,7 @@ function initialsAdd() {
 function putScores() {
   if (initialsList.className === "visable") {
     let currentScore = {
-      initials: document.querySelector(initialsForm).value,
+      initials: document.querySelector(".initialsForm").value,
       timeLeft: timerLeft,
     };
 
@@ -178,12 +177,143 @@ function displayScores() {
 for (let i = 0; i < answerBtns.length; i++) {
   answerBtns[i].addEventListener("click", checkAnswer);
 }
-splashScreen.addEventListener("click", function (e) {
+
+q1.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  state = "visable";
+
+  if (state === "visable") {
+    setTimeout(function () {
+      state = "";
+      q1.setAttribute("class", "hidden");
+      q2.setAttribute("class", "visable");
+    }, 2000);
+  }
+});
+q2.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  state = "visable";
+
+  if (state === "visable") {
+    setTimeout(function () {
+      state = "";
+      q2.setAttribute("class", "hidden");
+      q3.setAttribute("class", "visable");
+    }, 2000);
+  }
+});
+q3.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  state = "visable";
+
+  if (state === "visable") {
+    setTimeout(function () {
+      state = "";
+      q3.setAttribute("class", "hidden");
+      q4.setAttribute("class", "visable");
+    }, 2000);
+  }
+});
+q4.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  state = "visable";
+
+  if (state === "visable") {
+    setTimeout(function () {
+      state = "";
+      q4.setAttribute("class", "hidden");
+      q4.setAttribute("class", "visable");
+    }, 2000);
+  }
+});
+q5.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  state = "visable";
+
+  if (state === "visable") {
+    setTimeout(function () {
+      state = "";
+      q5.setAttribute("class", "hidden");
+      q6.setAttribute("class", "visable");
+    }, 2000);
+  }
+});
+q6.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  state = "visable";
+
+  if (state === "visable") {
+    setTimeout(function () {
+      state = "";
+      q6.setAttribute("class", "hidden");
+      q7.setAttribute("class", "visable");
+    }, 2000);
+  }
+});
+q7.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  state = "visable";
+
+  if (state === "visable") {
+    setTimeout(function () {
+      state = "";
+      q7.setAttribute("class", "hidden");
+      q8.setAttribute("class", "visable");
+    }, 2000);
+  }
+});
+q8.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  state = "visable";
+
+  if (state === "visable") {
+    setTimeout(function () {
+      state = "";
+      q8.setAttribute("class", "hidden");
+      q9.setAttribute("class", "visable");
+    }, 2000);
+  }
+});
+q9.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  state = "visable";
+
+  if (state === "visable") {
+    setTimeout(function () {
+      state = "";
+      q9.setAttribute("class", "hidden");
+      q10.setAttribute("class", "visable");
+    }, 2000);
+  }
+});
+q1.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  state = "visable";
+
+  if (state === "visable") {
+    setTimeout(function () {
+      state = "";
+      q10.setAttribute("class", "hidden");
+      killscreen.setAttribute("class", "visable");
+    }, 2000);
+  }
+});
+ const starterSplashEl = starterSplash.addEventListener("click", function (e) {
   e.preventDefault();
 
   if (state === "revealed") {
     state = "";
-    start.setAttribute("class", "hide");
+    starterSplash.setAttribute("class", "hide");
     q1.setAttribute("class", "visable");
   }
   startTimer();
@@ -206,7 +336,7 @@ killscreen.addEventListener("submit", function (e) {
 viewHighScoreBtn.addEventListener("click", function (e) {
   e.preventDefault();
   getHighScoreList();
-  initialsList.setAttribute("class", "hidden");
+  initialsList.setAttribute("class", "visable");
   clearInterval(timerInterval);
   displayScores();
 });
